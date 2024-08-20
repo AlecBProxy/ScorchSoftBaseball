@@ -4,24 +4,19 @@ def get_at_bat_results(team_name, inning, results, current_score, batting_order)
     num_outs = 0
     at_bat = 1
     batter_index = 0 # Start with the first batter in the lineup
+    batting_order_list = list(batting_order.values())  # Convert to list for indexing
 
     while num_outs < 3:
 
         # Get the batter's name from the batting order dictionary
-        batter_name = batting_order[batter_index % 9] # Cycle the lineup 
+        
+        batter_name = batting_order_list[batter_index % len(batting_order_list)] # Cycle the lineup 
 
-        if at_bat == 1:
-            suffix = "st"
-        elif at_bat == 2:
-            suffix = "nd"
-        elif at_bat == 3:
-            suffix = "rd"
-        else:
-            suffix = "th"
 
         #Get result of AB for the current batter 
+
         print(f"\nInning {inning} - {team_name} Turn")
-        print(f"At-Bat: {at_bat}{suffix} AB")
+        print(f"{at_bat}{TOME.get_suffix(at_bat)} AB")
         result = input(f"Enter the result of {batter_name}'s at-bat (e.g., Single, Strikeout): ").strip()
         results[inning][team_name].append(f"{batter_name}: {result}")
 
@@ -31,7 +26,7 @@ def get_at_bat_results(team_name, inning, results, current_score, batting_order)
             try:
                 num_outs = int(input("Enter the current number of outs (0-3): "))
                 if 0 <= num_outs <= 3:
-                    break
+                    breakf
                 else:
                     print("Number of outs must be between 0 and 3.")
             except:
@@ -83,10 +78,32 @@ def main():
     Team2 = input("Please enter Team 2: ")
     print()
 
+    # Testing Data 
+    # Team1 = "Blue Jays"
+    # Team2 = "Red Sox"
+
+    while True:
+
+        pitch_logging = input("Would you like to enable individual pitch-logging in your session?(Y/N): ").upper()
+        if pitch_logging == "Y":
+            pitch_logging = True
+            break
+        elif pitch_logging == "N":
+            pitch_logging = False
+            break
+        else:
+            print("Data-entry error: Please choose a valid option (Y or N): ")
+
+        
+
     #initialize the batting order for each team
 
     team1_batting_order = TOME.get_batting_order(Team1)
     team2_batting_order = TOME.get_batting_order(Team2)
+
+    # Testing Data
+    # team1_batting_order = {i: f"Player{i}" for i in range(1, 10)}
+    # team2_batting_order = {i: f"Player{i}" for i in range(1, 10)}
 
 
     # Initialize results dictionary
@@ -99,6 +116,9 @@ def main():
 
     for inning in range(1, 10):  # Assuming a 9-inning game
         print(f"Inning {inning} - {Team1}'s turn")
+        if pitch_logging:
+            TOME.ab_pitch_count()
+
         num_outs, team1_score = get_at_bat_results(Team1, inning, results, team1_score, team1_batting_order)
 
         if num_outs < 3:
@@ -107,6 +127,9 @@ def main():
             print(f"{Team1} have 3 outs. It's now time for {Team2} to bat!")
 
         print(f"Inning {inning} - {Team2}'s turn")
+        if pitch_logging:
+            TOME.ab_pitch_count()
+
         num_outs, team2_score = get_at_bat_results(Team2, inning, results, team2_score, team2_batting_order)
 
         if num_outs < 3:

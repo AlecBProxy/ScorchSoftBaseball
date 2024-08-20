@@ -43,6 +43,9 @@ def print_logo():
         print("                             ⠀⣿⣿⣿⠿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   ⠹⣿⣿⣷⡀⠀⠀⠀")
         print("                             ⠀⢻⣿⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  ⠀⣿⣿⣿⣶⣆⠀")
         print("                             ⠀⠀⠙⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   ⠘⠿⠿⠿⠿⡿⠿")
+        print()
+        print()
+        print()
 
 
 def get_batting_order(team_name):
@@ -52,3 +55,48 @@ def get_batting_order(team_name):
             lineup[i] = player_name # Using i as the key, player_name as the valu e
         return lineup
         
+def get_suffix(number):
+        if number == 1:
+                return "st"
+        elif number == 2:
+                return "nd"
+        elif number== 3:
+                return "rd"
+        else:
+                return "th"
+
+def ab_pitch_count():
+        strikes = 0
+        balls = 0
+        fouls = 0
+        print()
+        print("S: Strike")
+        print("B: Ball")
+        print("F: Foul")
+        print("R: enter the result of the AB")
+        print()
+
+        while True:
+                pitch = input("Please enter the pitch: ").upper()
+                if pitch == "S":
+                        strikes += 1
+                        if strikes == 3:
+                                print("Strikeout!")
+                                break
+                elif pitch == "B":
+                        balls += 1
+                        if balls == 4:
+                                print("Walk!")
+                                break
+                elif pitch == "F":
+                        fouls += 1
+                        if strikes < 2:
+                                strikes += 1
+                elif pitch == "N":
+                        break
+                else:
+                        print("Error: please enter one of the options above (S/B/F/N).")
+
+        print(f"Final Pitch Count: {strikes} Strikes, {balls} Balls, {fouls} Fouls")
+        
+        return strikes, balls, fouls
