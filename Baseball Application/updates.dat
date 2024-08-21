@@ -1,2 +1,3 @@
 Aug 18th, created a function for suffix and integrated it into the main program, as well as the TOME
 Aug 19th, fixed some errors in the suffix function. Created the ab_pitch_count feature. Implemented it into the program as an option prior to the start of the session.
+Aug 21, started inventories for at-bat outcomes. 

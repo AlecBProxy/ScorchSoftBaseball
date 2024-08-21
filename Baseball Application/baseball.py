@@ -26,7 +26,7 @@ def get_at_bat_results(team_name, inning, results, current_score, batting_order)
             try:
                 num_outs = int(input("Enter the current number of outs (0-3): "))
                 if 0 <= num_outs <= 3:
-                    breakf
+                    break
                 else:
                     print("Number of outs must be between 0 and 3.")
             except:
