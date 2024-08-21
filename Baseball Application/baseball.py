@@ -17,7 +17,19 @@ def get_at_bat_results(team_name, inning, results, current_score, batting_order)
 
         print(f"\nInning {inning} - {team_name} Turn")
         print(f"{at_bat}{TOME.get_suffix(at_bat)} AB")
-        result = input(f"Enter the result of {batter_name}'s at-bat (e.g., Single, Strikeout): ").strip()
+
+        while True:
+            result = input(f"Enter the result of {batter_name}'s at-bat (H for help): ").strip().lower()
+            if result in TOME.results_list:
+                break
+            elif result == "h":
+                TOME.get_results_list()
+                print()
+            
+            else:
+                print("Error: Please enter a valid result (H for help).")
+
+
         results[inning][team_name].append(f"{batter_name}: {result}")
 
         #Update Outs
@@ -71,12 +83,29 @@ def print_results(results, team1, team2):
 def main():
 
     TOME.print_logo()
+    TOME.select_team()
 
     print()
-    Team1 = input("Please enter Team 1: ")
-    print()
-    Team2 = input("Please enter Team 2: ")
-    print()
+    while True:
+
+        Team1 = input("Please select Team 1: ")
+        if Team1 in TOME.american_league_teams or Team1 in TOME.national_league_teams:
+            break
+        else:
+            print("Please select an MLB team from the provided list.")
+        print()
+
+    while True:
+
+        Team2 = input("Please select Team 2: ")
+        if Team2 in TOME.american_league_teams or Team2 in TOME.national_league_teams:
+            if Team2 != Team1:
+                break
+            else:
+                print("The second team cannot be the same as the first.")
+        else:
+            print("Please select an MLB team from the provided list.")
+        print()
 
     # Testing Data 
     # Team1 = "Blue Jays"
@@ -85,6 +114,7 @@ def main():
     while True:
 
         pitch_logging = input("Would you like to enable individual pitch-logging in your session?(Y/N): ").upper()
+        print()
         if pitch_logging == "Y":
             pitch_logging = True
             break
