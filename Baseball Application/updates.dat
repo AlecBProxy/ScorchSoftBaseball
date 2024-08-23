@@ -1,3 +1,4 @@
 Aug 18th, created a function for suffix and integrated it into the main program, as well as the TOME
 Aug 19th, fixed some errors in the suffix function. Created the ab_pitch_count feature. Implemented it into the program as an option prior to the start of the session.
 Aug 21, started inventories for at-bat outcomes. Created a corresponding list of abbreviations, as well as a function to display valid outcomes. Entered validation for result. Added a "help" option for result entry. Cleaned up output with spacing. Created inventories for American league and National League to work with later. Created a "selection screen" with select_team function. Created robust validation with Team selection. 
+Aug 22, restructured the team selection process and introduced a menu system, so the validation is much more streamlined and the inputs are simplified. Print statements for team selection have also been added. Also added "\n"s in places for improved spacing.

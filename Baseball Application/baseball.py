@@ -87,25 +87,33 @@ def main():
 
     print()
     while True:
-
-        Team1 = input("Please select Team 1: ")
-        if Team1 in TOME.american_league_teams or Team1 in TOME.national_league_teams:
+        
+        team1_num = int(input("\nPlease select Team 1 by entering their corresponding number: "))
+        if 1 <= team1_num <= 15:
+            Team1 = TOME.american_league_teams[team1_num - 1]
+            print(f"\nYou've selected The {Team1}!")
+            break
+        elif 16 <= team1_num <= 30:
+            Team1 = TOME.national_league_teams[team1_num - 16]
+            print(f"\nYou've selected the {Team1}!")
             break
         else:
-            print("Please select an MLB team from the provided list.")
+            print("\nPlease select a number from the list of MLB teams.")
         print()
 
     while True:
 
-        Team2 = input("Please select Team 2: ")
-        if Team2 in TOME.american_league_teams or Team2 in TOME.national_league_teams:
-            if Team2 != Team1:
-                break
-            else:
-                print("The second team cannot be the same as the first.")
+        team2_num = int(input("\nPlease select Team 2 by entering their corresponding number: "))
+        if 1 <= team2_num <= 15:
+            Team2 = TOME.american_league_teams[team2_num - 1]
+            print(f"\nYou've selected The {Team2}!")
+            break
+        elif 16 <= team2_num <= 30:
+            Team2 = TOME.national_league_teams[team2_num - 16]
+            print(f"\nYou've selected The {Team2}!")
+            break
         else:
-            print("Please select an MLB team from the provided list.")
-        print()
+            print("\nPlease select a number from the list of MLB teams.")
 
     # Testing Data 
     # Team1 = "Blue Jays"
@@ -113,7 +121,7 @@ def main():
 
     while True:
 
-        pitch_logging = input("Would you like to enable individual pitch-logging in your session?(Y/N): ").upper()
+        pitch_logging = input("\nWould you like to enable individual pitch-logging in your session?(Y/N): ").upper()
         print()
         if pitch_logging == "Y":
             pitch_logging = True
