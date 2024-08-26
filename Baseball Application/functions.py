@@ -86,6 +86,19 @@ national_league_teams = [
     "Giants"
 ]
 
+# Define test data for both teams
+team1_players = [
+    "Player1_Team1", "Player2_Team1", "Player3_Team1",
+    "Player4_Team1", "Player5_Team1", "Player6_Team1",
+    "Player7_Team1", "Player8_Team1", "Player9_Team1"
+]
+
+team2_players = [
+    "Player1_Team2", "Player2_Team2", "Player3_Team2",
+    "Player4_Team2", "Player5_Team2", "Player6_Team2",
+    "Player7_Team2", "Player8_Team2", "Player9_Team2"
+]
+
 results_list = ["strikeout", "walk", "hit by pitch", "single", "double", "triple", "home run", "ground-rule double", "fielder's choice", "error", "interference", "wild pitch", "passed ball", "balk"]
 
 results_list_abb = ["K", "BB", "HP", "HBP", "1B", "2B", "3B", "HR", "GRD", "FC", "E", "CI", "WP", "PB", "BK"]
@@ -110,13 +123,15 @@ def get_results_list():
                 print(f"- {i}")
 
 
-def get_batting_order(team_name):
-        lineup = {}
-        for i in range (1, 10):
-            player_name = input(f"Batter #{i} for {team_name}: ")
-            print()
-            lineup[i] = player_name # Using i as the key, player_name as the valu e
-        return lineup
+def get_batting_order(team_name, default_order=None):
+        if default_order:
+                return default_order
+        else:
+                lineup = {}
+                for i in range (1, 10):
+                        player_name = input(f"\nBatter #{i} for {team_name}: ")
+                        lineup[i] = player_name # Using i as the key, player_name as the value
+                return lineup
         
 def get_suffix(number):
         if number == 1:
@@ -157,11 +172,12 @@ def ab_pitch_count():
                         fouls += 1
                         if strikes < 2:
                                 strikes += 1
-                elif pitch == "N":
+                elif pitch == "R":
                         break
                 else:
-                        print("Error: please enter one of the options above (S/B/F/N).")
+                        print("\nError: please enter one of the options above (S/B/F/R).")
 
-        print(f"Final Pitch Count: {strikes} Strikes, {balls} Balls, {fouls} Fouls")
+        print(f"\nFinal Pitch Count: {strikes} Strikes, {balls} Balls, {fouls} Fouls")
         
         return strikes, balls, fouls
+

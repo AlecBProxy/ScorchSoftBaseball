@@ -104,7 +104,9 @@ def main():
     while True:
 
         team2_num = int(input("\nPlease select Team 2 by entering their corresponding number: "))
-        if 1 <= team2_num <= 15:
+        if team2_num == team1_num:
+            print("\nError: You cannot select the same team twice for a single game.")
+        elif 1 <= team2_num <= 15:
             Team2 = TOME.american_league_teams[team2_num - 1]
             print(f"\nYou've selected The {Team2}!")
             break
