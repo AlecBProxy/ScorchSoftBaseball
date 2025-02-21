@@ -16,7 +16,7 @@ traditional means to be cumbersome
 *so that the experience can be swift, smooth and fun!
 
 _______________________________________________________________________________
-Prior to using the app, ket's quickly review some fundamental baseball rules...
+Prior to using the app, let's quickly review some fundamental baseball rules...
 -------------------------------------------------------------------------------
 -There are 9 innings in a game
 -Each inning is comprised of a "top half" and a "bottom half"
